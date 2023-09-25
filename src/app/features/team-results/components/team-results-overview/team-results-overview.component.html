@@ -1,0 +1,22 @@
+<div>
+  <table>
+    <tr *ngFor="let s of results$ | async">
+      <td>
+        <img [src]="s.teams.home.logo" [alt]="s.teams.home.name" />
+      </td>
+      <td>
+        {{ s.teams.home.name }}
+      </td>
+      <td>{{ s.score.fulltime.home }}</td>
+      <td>-</td>
+      <td>{{ s.score.fulltime.away }}</td>
+      <td>
+        {{ s.teams.away.name }}
+      </td>
+      <td>
+        <img [src]="s.teams.away.logo" [alt]="s.teams.away.name" />
+      </td>
+    </tr>
+  </table>
+  <a [routerLink]="'/countries/' + (countryCode$ | async)">Back</a>
+</div>

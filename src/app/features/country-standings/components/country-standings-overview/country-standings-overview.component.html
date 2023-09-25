@@ -1,0 +1,46 @@
+<div *ngFor="let league of standings$ | async">
+  <h1>
+    {{ league.name }}
+  </h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Name</th>
+        <th>Games</th>
+        <th>W</th>
+        <th>L</th>
+        <th>D</th>
+        <th>Goal Difference</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let standing of league.standings[0]; index as position">
+        <td>{{ position + 1 }}</td>
+        <td>
+          <img
+            [src]="standing.team.logo"
+            [alt]="standing.team.name"
+            srcset=""
+          />
+        </td>
+        <td>
+          <a
+            [routerLink]="'/results/' + standing.team.id"
+            [queryParams]="{ country: countryCode$ | async }"
+            >{{ standing.team.name }}</a
+          >
+        </td>
+        <td>{{ standing.all.played }}</td>
+        <td>{{ standing.all.win }}</td>
+        <td>{{ standing.all.lose }}</td>
+        <td>{{ standing.all.draw }}</td>
+        <td>{{ standing.all.goals.for - standing.all.goals.against }}</td>
+        <td>{{ standing.points }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
